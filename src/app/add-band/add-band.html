@@ -1,0 +1,34 @@
+<article class="dialog">
+  <header class="dialog-header">
+    <h2>{{ mode() }}</h2>
+  </header>
+
+  <form [formGroup]="signUpForm" class="form">
+    <div class="field">
+      <label>Artist</label>
+      <input matInput type="text" formControlName="name" />
+    </div>
+
+    <div class="field">
+      <label>City</label>
+      <input matInput type="text" formControlName="city" />
+    </div>
+
+    <div class="field">
+      <label>Venue</label>
+      <input matInput type="text" formControlName="venue" />
+    </div>
+
+    <div class="field">
+      <label>Date</label>
+      <input matInput [matDatepicker]="picker" formControlName="date" />
+
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </div>
+
+    <button class="primary-btn" type="button" (click)="save()">Save</button>
+  </form>
+
+  <button class="close-btn" (click)="closeModal()">Close</button>
+</article>

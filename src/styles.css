@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg: #0d0818;
+
+  --surface: #1b1230;
+  --surface-hover: #241843;
+
+  --primary: #792ca2;
+  --secondary: #c13383;
+
+  --danger: #e05454;
+
+  --text: #f8f5ff;
+  --text-muted: #bbaed6;
+
+  --border: rgba(193, 51, 131, 0.25);
+}
+
+body {
+  background: radial-gradient(circle at top, rgba(90, 60, 104, 0.25), transparent 50%), #0d0818;
+
+  color: var(--text);
+}
+
+/* .mat-datepicker-content,
+.mat-calendar {
+  background: #4a5469;
+  color: #ffffff;
+} */
+/* .mat-calendar-body-selected {
+  background: #1db954 !important;
+  color: #0b1220 !important;
+} */
+
+/* .mat-calendar-body-cell:hover .mat-calendar-body-cell-content {
+  background: rgba(29, 185, 84, 0.2);
+}
+ */

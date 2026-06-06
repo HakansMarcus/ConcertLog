@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="band-name">{{ band().name }}</div>
+
+  <div class="meta">{{ band().date }} • {{ band().venue }} • {{ band().city }}</div>
+
+  @if (band().festival) {
+    <div class="meta festival">Festival: {{ band().festival }}</div>
+  }
+
+  <div class="actionButtons">
+    <div class="delete">
+      <button class="delete-btn" (click)="deleteRecord()">
+        <span class="material-icons">delete</span>
+      </button>
+    </div>
+
+    <div class="edit">
+      <button class="edit-btn" (click)="openEditModal()">
+        <span class="material-icons">mode_edit</span>
+      </button>
+    </div>
+  </div>
+</div>

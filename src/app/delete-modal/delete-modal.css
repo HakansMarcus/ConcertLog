@@ -1,0 +1,158 @@
+:host {
+  display: block;
+  padding: 20px;
+
+  font-family: system-ui, sans-serif;
+
+  background: rgba(13, 8, 24, 0.92);
+
+  border: 1px solid rgba(193, 51, 131, 0.25);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(121, 44, 162, 0.15);
+
+  backdrop-filter: blur(14px);
+
+  color: #bbe1fa;
+
+  animation: modalIn 0.18s ease-out;
+}
+
+/* =========================
+   TITLE
+========================= */
+h2 {
+  margin: 0 0 10px;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 10px rgba(193, 51, 131, 0.25),
+    0 0 20px rgba(121, 44, 162, 0.15);
+}
+
+/* =========================
+   TEXT
+========================= */
+p {
+  margin: 0 0 20px;
+
+  color: rgba(187, 225, 250, 0.75);
+
+  font-size: 14px;
+}
+
+/* =========================
+   WARNING BOX
+========================= */
+.warning {
+  background: rgba(193, 51, 131, 0.08);
+
+  border: 1px solid rgba(193, 51, 131, 0.25);
+
+  color: #ffe6f0;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  font-size: 13px;
+
+  margin-bottom: 15px;
+
+  box-shadow: 0 0 12px rgba(193, 51, 131, 0.12);
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* =========================
+   BASE BUTTON
+========================= */
+button {
+  border: 1px solid rgba(193, 51, 131, 0.25);
+
+  padding: 8px 14px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: 500;
+
+  transition: all 0.2s ease;
+
+  background: transparent;
+
+  color: #bbe1fa;
+}
+
+/* =========================
+   CANCEL BUTTON
+========================= */
+button:first-child {
+  background: rgba(27, 18, 48, 0.4);
+
+  border: 1px solid rgba(193, 51, 131, 0.2);
+}
+
+button:first-child:hover {
+  background: rgba(193, 51, 131, 0.1);
+
+  border-color: rgba(193, 51, 131, 0.35);
+}
+
+/* =========================
+   DANGER BUTTON
+========================= */
+.danger {
+  background: linear-gradient(135deg, #792ca2, #c13383);
+
+  border: none;
+
+  color: white;
+
+  box-shadow:
+    0 0 12px rgba(193, 51, 131, 0.25),
+    0 0 25px rgba(121, 44, 162, 0.15);
+}
+
+.danger:hover {
+  transform: translateY(-1px) scale(1.02);
+
+  box-shadow:
+    0 0 18px rgba(193, 51, 131, 0.4),
+    0 0 35px rgba(121, 44, 162, 0.25);
+}
+
+.danger:active {
+  transform: scale(0.98);
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}

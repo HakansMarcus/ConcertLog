@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Concert Log</h1>
+  <p>Track bands, venues, and live performances you’ve attended.</p>
+</div>
+
+<div class="search-bar">
+  <app-searchbar (search)="updateSearch($event)"></app-searchbar>
+
+  <button mat-icon-button (click)="sortBandsByDate()">
+    <mat-icon>sort</mat-icon>
+  </button>
+
+  <button mat-icon-button (click)="openModal()">
+    <mat-icon>add_circle</mat-icon>
+  </button>
+</div>
+
+<div class="concertSum">
+  <p class="stat">
+    <span>{{ totalConcerts() }}</span> concerts recorded
+  </p>
+</div>
+
+<div class="grid">
+  @for (band of filteredBands(); track band.id) {
+    <app-card [band]="band"></app-card>
+  } @empty {
+    <div class="empty-state">
+      <p>No concerts logged yet.</p>
+      <small>Add your first band to start building your archive.</small>
+    </div>
+  }
+</div>

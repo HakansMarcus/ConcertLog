@@ -1,0 +1,106 @@
+.card {
+  background: linear-gradient(145deg, #1b1230, #140d24);
+
+  border: 1px solid rgba(193, 51, 131, 0.2);
+
+  border-radius: 14px;
+  padding: 1.4rem;
+
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+
+  border-color: #c13383;
+
+  box-shadow:
+    0 0 20px rgba(193, 51, 131, 0.25),
+    0 0 40px rgba(121, 44, 162, 0.15);
+}
+.band-name {
+  color: #ffffff;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  margin-bottom: 0.4rem;
+}
+
+.meta {
+  color: var(--text-muted);
+
+  font-size: 0.9rem;
+}
+.festival {
+  display: inline-block;
+
+  margin-top: 0.75rem;
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  background: rgba(193, 51, 131, 0.15);
+
+  color: #ff7fd0;
+
+  font-weight: 600;
+}
+
+/*DELETE */
+.delete {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* reset button styling */
+.delete-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.delete-btn .material-icons {
+  color: #e05454;
+}
+
+.delete-btn:hover .material-icons {
+  filter: drop-shadow(0 0 8px rgba(224, 84, 84, 0.5));
+}
+
+/*EDIT BUTTON*/
+
+.edit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* reset button styling */
+.edit-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.edit-btn:hover .material-icons {
+  color: #c13383;
+}
+
+/* icon color */
+.edit-btn .material-icons {
+  color: #792ca2;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 1rem;
+}

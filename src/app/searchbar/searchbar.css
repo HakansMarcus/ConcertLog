@@ -1,0 +1,35 @@
+.neon-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 16px;
+
+  background: rgba(27, 18, 48, 0.7);
+  border: 1px solid rgba(193, 51, 131, 0.25);
+
+  border-radius: 999px;
+
+  backdrop-filter: blur(12px);
+  transition: 0.25s ease;
+}
+
+.neon-input input {
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: #bbe1fa;
+  width: 100%;
+}
+
+.neon-input mat-icon {
+  color: #792ca2;
+}
+
+.neon-input:focus-within {
+  border-color: #c13383;
+  box-shadow:
+    0 0 12px rgba(193, 51, 131, 0.35),
+    0 0 30px rgba(121, 44, 162, 0.2);
+}

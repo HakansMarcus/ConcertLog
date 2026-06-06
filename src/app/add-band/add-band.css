@@ -1,0 +1,159 @@
+:host {
+  display: block;
+
+  padding: 24px;
+  border-radius: 16px;
+
+  background: rgba(13, 8, 24, 0.92);
+
+  border: 1px solid rgba(193, 51, 131, 0.25);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(121, 44, 162, 0.15);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  color: rgba(187, 225, 250, 0.85);
+
+  min-width: 380px;
+
+  animation: modalIn 0.18s ease-out;
+}
+
+.dialog-header h2 {
+  margin: 0 0 16px 0;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 10px rgba(193, 51, 131, 0.25),
+    0 0 25px rgba(121, 44, 162, 0.15);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field input {
+  background: rgba(27, 18, 48, 0.4);
+
+  border: 1px solid rgba(193, 51, 131, 0.2);
+  border-radius: 10px;
+
+  padding: 10px 12px;
+
+  color: #bbe1fa;
+
+  transition: all 0.2s ease;
+}
+
+.field input:focus {
+  outline: none;
+
+  border-color: #c13383;
+
+  box-shadow:
+    0 0 10px rgba(193, 51, 131, 0.25),
+    0 0 20px rgba(121, 44, 162, 0.15);
+}
+
+.primary-btn {
+  margin-top: 10px;
+
+  background: linear-gradient(135deg, #792ca2, #c13383);
+
+  border: none;
+
+  color: white;
+
+  padding: 10px 14px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+
+  box-shadow: 0 0 15px rgba(193, 51, 131, 0.25);
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 0 18px rgba(193, 51, 131, 0.4),
+    0 0 30px rgba(121, 44, 162, 0.2);
+}
+
+.close-btn {
+  margin-top: 12px;
+
+  background: transparent;
+
+  border: 1px solid rgba(193, 51, 131, 0.25);
+
+  color: rgba(187, 225, 250, 0.8);
+
+  padding: 8px 12px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.close-btn:hover {
+  background: rgba(193, 51, 131, 0.1);
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+// Source - https://stackoverflow.com/a/57036248
+// Posted by Saqib S, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-06-06, License - CC BY-SA 4.0
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: white !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: white !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: white !important;
+}
+
+::ng-deep .mat-form-field-label {
+  /*change color of label*/
+  color: white !important;
+}
+
+mat-datepicker-toggle {
+  color: white !important;
+}
