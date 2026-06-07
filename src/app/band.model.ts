@@ -6,4 +6,5 @@ export interface Band {
   date: string;
   venue: string;
   festival?: string;
+  photoUrls?: string[];
 }

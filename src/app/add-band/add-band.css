@@ -129,31 +129,3 @@
     filter: blur(0);
   }
 }
-
-// Source - https://stackoverflow.com/a/57036248
-// Posted by Saqib S, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-06-06, License - CC BY-SA 4.0
-
-::ng-deep .mat-focused .mat-form-field-label {
-  /*change color of label*/
-  color: white !important;
-}
-
-::ng-deep.mat-form-field-underline {
-  /*change color of underline*/
-  background-color: white !important;
-}
-
-::ng-deep.mat-form-field-ripple {
-  /*change color of underline when focused*/
-  background-color: white !important;
-}
-
-::ng-deep .mat-form-field-label {
-  /*change color of label*/
-  color: white !important;
-}
-
-mat-datepicker-toggle {
-  color: white !important;
-}

@@ -27,6 +27,28 @@
   </section>
 
   <section class="stats-section">
+    <h2>Concert Map</h2>
+
+    <div id="concertMap" class="concert-map"></div>
+  </section>
+
+  <section class="stats-section">
+    <h2>Concerts per Year</h2>
+
+    <div class="chart-card">
+      <canvas #yearChart></canvas>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <h2>Top Artists Chart</h2>
+
+    <div class="chart-card">
+      <canvas #artistChart></canvas>
+    </div>
+  </section>
+
+  <section class="stats-section">
     <h2>Top Artists</h2>
 
     <ul>
@@ -76,8 +98,8 @@
       <h2>First Concert</h2>
 
       @if (firstConcert()) {
-        <p>{{ firstConcert()?.name }}</p>
-        <small>{{ firstConcert()?.date }} • {{ firstConcert()?.city }}</small>
+        <p>{{ firstConcert().name }}</p>
+        <small>{{ firstConcert().date }} • {{ firstConcert().city }}</small>
       } @else {
         <p>No data yet.</p>
       }
@@ -87,8 +109,8 @@
       <h2>Latest Concert</h2>
 
       @if (latestConcert()) {
-        <p>{{ latestConcert()?.name }}</p>
-        <small>{{ latestConcert()?.date }} • {{ latestConcert()?.city }}</small>
+        <p>{{ latestConcert().name }}</p>
+        <small>{{ latestConcert().date }} • {{ latestConcert().city }}</small>
       } @else {
         <p>No data yet.</p>
       }

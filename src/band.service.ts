@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { arrayUnion } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import {
   getFirestore,
@@ -10,6 +11,7 @@ import {
   updateDoc,
   deleteDoc,
   onSnapshot,
+  getDoc,
 } from 'firebase/firestore';
 
 import { environment } from './environments/environment';
@@ -63,5 +65,39 @@ export class BandService {
 
   deleteRecord(id: string | number) {
     return deleteDoc(doc(this.db, 'bands', String(id)));
+  }
+  async getBandById(id: string | number): Promise<Band | undefined> {
+    const bandDoc = await getDoc(doc(this.db, 'bands', String(id)));
+
+    if (!bandDoc.exists()) {
+      return undefined;
+    }
+
+    return {
+      id: bandDoc.id,
+      ...(bandDoc.data() as Omit<Band, 'id'>),
+    };
+  }
+
+  private storage = getStorage(this.app);
+
+  async uploadBandPhotos(bandId: string | number, files: File[]) {
+    const uploadedUrls: string[] = [];
+
+    for (const file of files) {
+      const filePath = `bands/${bandId}/${Date.now()}-${file.name}`;
+      const fileRef = ref(this.storage, filePath);
+
+      await uploadBytes(fileRef, file);
+
+      const url = await getDownloadURL(fileRef);
+      uploadedUrls.push(url);
+    }
+
+    await updateDoc(doc(this.db, 'bands', String(bandId)), {
+      photoUrls: arrayUnion(...uploadedUrls),
+    });
+
+    return uploadedUrls;
   }
 }

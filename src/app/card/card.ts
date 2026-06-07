@@ -1,5 +1,6 @@
 import { Component, input, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { RouterLink } from '@angular/router';
 
 import { Band } from '../band.model';
 import { BandService } from '../../band.service';
@@ -9,6 +10,7 @@ import { AddBand } from '../add-band/add-band';
 
 @Component({
   selector: 'app-card',
+  imports: [RouterLink],
   standalone: true,
   templateUrl: './card.html',
   styleUrl: './card.css',
