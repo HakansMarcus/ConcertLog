@@ -24,8 +24,10 @@ export class Card {
       .open(DeleteConfirmationComponent)
       .afterClosed()
       .subscribe((result) => {
-        if (result) {
-          this.bandService.deleteRecord(this.band().id);
+        const id = this.band().id;
+
+        if (result && id) {
+          this.bandService.deleteRecord(id);
         }
       });
   }

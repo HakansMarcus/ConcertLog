@@ -1,8 +1,9 @@
 export interface Band {
-  id: number;
+  id?: string | number;
+
   name: string;
-  date: string;
   city: string;
+  date: string;
   venue: string;
   festival?: string;
 }

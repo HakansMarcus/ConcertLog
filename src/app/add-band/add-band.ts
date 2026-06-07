@@ -67,7 +67,7 @@ export class AddBand {
     this.dialogRef?.close();
   }
 
-  save() {
+  async save() {
     if (!this.signUpForm.valid) return;
 
     const form = this.signUpForm.getRawValue();
@@ -90,19 +90,14 @@ export class AddBand {
         venue: form.venue ?? '',
       };
 
-      this.bandService.updateRecord(updatedBand);
-
+      await this.bandService.updateRecord(updatedBand);
       this.snackBar.open('Band updated successfully!', 'Close', {
         duration: 3000,
         horizontalPosition: 'center',
         verticalPosition: 'bottom',
       });
-    }
-
-    // ADD MODE
-    else {
-      const newBand: Band = {
-        id: Date.now(),
+    } else {
+      const newBand: Omit<Band, 'id'> = {
         name: form.name,
         city: form.city,
         date: formattedDate,
@@ -110,8 +105,7 @@ export class AddBand {
         festival: '',
       };
 
-      this.bandService.addBand(newBand);
-
+      await this.bandService.addBand(newBand);
       this.snackBar.open('Band added successfully!', 'Close', {
         duration: 3000,
         horizontalPosition: 'center',

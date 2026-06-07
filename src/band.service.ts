@@ -1,44 +1,67 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  updateDoc,
+  deleteDoc,
+  onSnapshot,
+} from 'firebase/firestore';
+
+import { environment } from './environments/environment';
 import { Band } from './app/band.model';
-import { bands } from './app/sample-bands';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BandService {
-  // Reactive signal holding the list of bands
-  private bands = signal<Band[]>(bands);
+  private app = getApps().length ? getApp() : initializeApp(environment.firebase);
+  private db = getFirestore(this.app);
 
-  // Getter for Home component
-  getBands() {
-    return this.bands;
+  getBands(): Observable<Band[]> {
+    return new Observable<Band[]>((subscriber) => {
+      const bandsRef = collection(this.db, 'bands');
+
+      const unsubscribe = onSnapshot(
+        bandsRef,
+        (snapshot) => {
+          const bands = snapshot.docs
+            .map((docSnap) => ({
+              id: docSnap.id,
+              ...(docSnap.data() as Omit<Band, 'id'>),
+            }))
+            .sort((a, b) => b.date.localeCompare(a.date));
+
+          subscriber.next(bands);
+        },
+        (error) => {
+          subscriber.error(error);
+        },
+      );
+
+      return () => unsubscribe();
+    });
   }
 
-  // Add a new band
-  addBand(band: Band) {
-    this.bands.update((current) => [...current, band]);
+  addBand(band: Omit<Band, 'id'>) {
+    return addDoc(collection(this.db, 'bands'), band);
   }
 
-  // Optional: get a band by id
-  getBandById(id: number) {
-    return this.bands().find((b) => b.id === id);
+  updateRecord(band: Band) {
+    if (!band.id) {
+      throw new Error('Band id is required for update');
+    }
+
+    const { id, ...data } = band;
+
+    return updateDoc(doc(this.db, 'bands', String(id)), data);
   }
 
-  getBandByName(name: string) {
-    return this.bands().find((b) => b.name === name);
-  }
-
-  sortBandByDate() {
-    return [...this.bands()].sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-    );
-  }
-
-  deleteRecord(id: number) {
-    this.bands.update((current) => current.filter((b) => b.id !== id));
-  }
-
-  updateRecord(updated: Band) {
-    this.bands.update((current) => current.map((b) => (b.id === updated.id ? updated : b)));
+  deleteRecord(id: string | number) {
+    return deleteDoc(doc(this.db, 'bands', String(id)));
   }
 }

@@ -1,1 +1,108 @@
-<p>stats works!</p>
+<section class="stats-page">
+  <header class="stats-header">
+    <h1>Concert Analytics</h1>
+    <p>Your concert history at a glance.</p>
+  </header>
+
+  <section class="overview-grid">
+    <article class="stat-card">
+      <h3>Total Concerts</h3>
+      <span>{{ totalConcerts() }}</span>
+    </article>
+
+    <article class="stat-card">
+      <h3>Unique Artists</h3>
+      <span>{{ uniqueArtists() }}</span>
+    </article>
+
+    <article class="stat-card">
+      <h3>Cities Visited</h3>
+      <span>{{ uniqueCities() }}</span>
+    </article>
+
+    <article class="stat-card">
+      <h3>Venues Visited</h3>
+      <span>{{ uniqueVenues() }}</span>
+    </article>
+  </section>
+
+  <section class="stats-section">
+    <h2>Top Artists</h2>
+
+    <ul>
+      @for (artist of topArtists(); track artist.label) {
+        <li>
+          <span>{{ artist.label }}</span>
+          <span>{{ artist.count }} concerts</span>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="split-grid">
+    <article class="stats-panel">
+      <h2>Top Cities</h2>
+
+      <ul>
+        @for (city of topCities(); track city.label) {
+          <li>
+            <span>{{ city.label }}</span>
+            <span>{{ city.count }}</span>
+          </li>
+        } @empty {
+          <li>No city data yet.</li>
+        }
+      </ul>
+    </article>
+
+    <article class="stats-panel">
+      <h2>Top Venues</h2>
+
+      <ul>
+        @for (venue of topVenues(); track venue.label) {
+          <li>
+            <span>{{ venue.label }}</span>
+            <span>{{ venue.count }}</span>
+          </li>
+        } @empty {
+          <li>No venue data yet.</li>
+        }
+      </ul>
+    </article>
+  </section>
+
+  <section class="split-grid">
+    <article class="stats-panel">
+      <h2>First Concert</h2>
+
+      @if (firstConcert()) {
+        <p>{{ firstConcert()?.name }}</p>
+        <small>{{ firstConcert()?.date }} • {{ firstConcert()?.city }}</small>
+      } @else {
+        <p>No data yet.</p>
+      }
+    </article>
+
+    <article class="stats-panel">
+      <h2>Latest Concert</h2>
+
+      @if (latestConcert()) {
+        <p>{{ latestConcert()?.name }}</p>
+        <small>{{ latestConcert()?.date }} • {{ latestConcert()?.city }}</small>
+      } @else {
+        <p>No data yet.</p>
+      }
+    </article>
+  </section>
+
+  <section class="stats-section">
+    <h2>Insights</h2>
+
+    <ul>
+      <li>🎤 Most seen artist: {{ topArtists()[0]?.label || 'N/A' }}</li>
+      <li>🌍 Most visited city: {{ topCities()[0]?.label || 'N/A' }}</li>
+      <li>🔥 Busiest year: {{ busiestYear() }}</li>
+      <li>🏟 Favorite venue: {{ topVenues()[0]?.label || 'N/A' }}</li>
+    </ul>
+  </section>
+</section>

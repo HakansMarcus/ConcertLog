@@ -1,0 +1,261 @@
+.stats-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  color: #bbe1fa;
+}
+
+/* HEADER */
+
+.stats-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.stats-header h1 {
+  margin: 0;
+
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 10px rgba(193, 51, 131, 0.4),
+    0 0 25px rgba(121, 44, 162, 0.3);
+}
+
+.stats-header p {
+  margin-top: 0.5rem;
+
+  color: rgba(187, 225, 250, 0.65);
+
+  letter-spacing: 1px;
+}
+
+/* OVERVIEW CARDS */
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 1.25rem;
+
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: rgba(27, 18, 48, 0.75);
+
+  border: 1px solid rgba(193, 51, 131, 0.2);
+
+  border-radius: 16px;
+
+  padding: 1.5rem;
+
+  backdrop-filter: blur(12px);
+
+  transition: all 0.25s ease;
+
+  box-shadow:
+    0 0 15px rgba(121, 44, 162, 0.08),
+    0 0 30px rgba(193, 51, 131, 0.05);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(193, 51, 131, 0.5);
+
+  box-shadow:
+    0 0 20px rgba(193, 51, 131, 0.25),
+    0 0 40px rgba(121, 44, 162, 0.15);
+}
+
+.stat-card h3 {
+  margin: 0;
+
+  font-size: 0.85rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 2px;
+
+  color: rgba(187, 225, 250, 0.65);
+}
+
+.stat-card span {
+  display: block;
+
+  margin-top: 12px;
+
+  font-size: 2.2rem;
+  font-weight: 800;
+
+  color: #ffffff;
+
+  text-shadow: 0 0 10px rgba(193, 51, 131, 0.25);
+}
+
+/* SECTIONS */
+
+.stats-section {
+  background: rgba(27, 18, 48, 0.65);
+
+  border: 1px solid rgba(193, 51, 131, 0.2);
+
+  border-radius: 16px;
+
+  padding: 1.5rem;
+
+  margin-bottom: 1.5rem;
+
+  backdrop-filter: blur(12px);
+}
+
+.stats-section h2 {
+  margin-top: 0;
+
+  color: #ffffff;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  font-size: 1rem;
+
+  border-bottom: 1px solid rgba(193, 51, 131, 0.15);
+
+  padding-bottom: 10px;
+}
+
+/* SPLIT GRID */
+
+.split-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  gap: 1.5rem;
+
+  margin-bottom: 1.5rem;
+}
+
+.stats-panel {
+  background: rgba(27, 18, 48, 0.65);
+
+  border: 1px solid rgba(193, 51, 131, 0.2);
+
+  border-radius: 16px;
+
+  padding: 1.5rem;
+
+  backdrop-filter: blur(12px);
+}
+
+.stats-panel h2 {
+  margin-top: 0;
+
+  color: #ffffff;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  font-size: 1rem;
+}
+
+/* LISTS */
+
+.stats-section ul,
+.stats-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stats-section li,
+.stats-panel li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid rgba(193, 51, 131, 0.15);
+}
+
+.stats-section li:last-child,
+.stats-panel li:last-child {
+  border-bottom: none;
+}
+
+/* TIMELINE PLACEHOLDER */
+
+.timeline-placeholder {
+  height: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px dashed rgba(193, 51, 131, 0.3);
+
+  border-radius: 12px;
+
+  color: rgba(187, 225, 250, 0.5);
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+/* ACTIVITY */
+
+.stats-panel p {
+  margin: 0;
+
+  font-size: 1.3rem;
+
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+.stats-panel small {
+  display: block;
+
+  margin-top: 8px;
+
+  color: rgba(187, 225, 250, 0.55);
+}
+
+/* INSIGHTS */
+
+.stats-section li::before {
+  margin-right: 8px;
+}
+
+/* SCANLINE EFFECT */
+
+.stats-page::before {
+  content: '';
+
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.015) 3px
+  );
+
+  opacity: 0.3;
+}
