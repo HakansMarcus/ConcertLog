@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet, RouterLinkWithHref } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+
+import { BandService } from '../../band.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,4 +10,12 @@ import { RouterLink, RouterOutlet, RouterLinkWithHref } from '@angular/router';
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
-export class Navbar {}
+export class Navbar {
+  bandService = inject(BandService);
+  private router = inject(Router);
+
+  async logout() {
+    await this.bandService.logout();
+    this.router.navigate(['/login']);
+  }
+}

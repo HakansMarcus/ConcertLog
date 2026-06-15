@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { arrayUnion } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
 import { BandService } from '../../band.service';
 import { Band } from '../band.model';
 
@@ -15,10 +14,11 @@ import { Band } from '../band.model';
 export class BandPage {
   private route = inject(ActivatedRoute);
   private bandService = inject(BandService);
-  selectedPhoto = signal<string | null>(null);
 
   band = signal<Band | undefined>(undefined);
   loading = signal(true);
+  uploading = signal(false);
+  selectedPhoto = signal<string | null>(null);
 
   constructor() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -28,7 +28,7 @@ export class BandPage {
     }
   }
 
-  async loadBand(id: string) {
+  async loadBand(id: string | number) {
     this.loading.set(true);
 
     const result = await this.bandService.getBandById(id);
@@ -40,14 +40,21 @@ export class BandPage {
   async uploadPhotos(event: Event) {
     const input = event.target as HTMLInputElement;
     const files = Array.from(input.files ?? []);
+    const currentBand = this.band();
 
-    if (!files.length || !this.band()?.id) return;
+    if (!files.length || !currentBand?.id) return;
 
-    await this.bandService.uploadBandPhotos(this.band()!.id!, files);
+    this.uploading.set(true);
 
-    const refreshedBand = await this.bandService.getBandById(this.band()!.id!);
-    this.band.set(refreshedBand);
+    try {
+      await this.bandService.uploadBandPhotos(currentBand.id, files);
 
-    input.value = '';
+      const refreshedBand = await this.bandService.getBandById(currentBand.id);
+      this.band.set(refreshedBand);
+
+      input.value = '';
+    } finally {
+      this.uploading.set(false);
+    }
   }
 }

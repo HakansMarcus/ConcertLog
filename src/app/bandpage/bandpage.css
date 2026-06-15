@@ -16,12 +16,14 @@
 }
 
 .photos-section {
+  text-align: center;
   margin-top: 2rem;
 }
 
 .upload-box {
-  display: inline-block;
-  margin-bottom: 1rem;
+  display: block;
+  width: fit-content;
+  margin: 1rem auto;
   padding: 0.8rem 1rem;
   border-radius: 12px;
   cursor: pointer;
@@ -34,14 +36,15 @@
 }
 
 .photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .photo-grid img {
-  width: 100%;
+  width: 160px;
   height: 170px;
   object-fit: cover;
   border-radius: 14px;

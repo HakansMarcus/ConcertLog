@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { arrayUnion } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
 import { initializeApp, getApps, getApp } from 'firebase/app';
+
 import {
   getFirestore,
   collection,
@@ -12,7 +12,20 @@ import {
   deleteDoc,
   onSnapshot,
   getDoc,
+  arrayUnion,
+  getDocs,
 } from 'firebase/firestore';
+
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+  User,
+} from 'firebase/auth';
 
 import { environment } from './environments/environment';
 import { Band } from './app/band.model';
@@ -23,10 +36,48 @@ import { Band } from './app/band.model';
 export class BandService {
   private app = getApps().length ? getApp() : initializeApp(environment.firebase);
   private db = getFirestore(this.app);
+  private storage = getStorage(this.app);
+  private auth = getAuth(this.app);
+
+  currentUser = signal<User | null>(null);
+  authReady = signal(false);
+
+  constructor() {
+    onAuthStateChanged(this.auth, (user) => {
+      this.currentUser.set(user);
+      this.authReady.set(true);
+    });
+  }
+
+  loginWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(this.auth, provider);
+  }
+
+  logout() {
+    return signOut(this.auth);
+  }
+
+  private getUserBandsPath() {
+    const uid = this.currentUser()?.uid;
+
+    if (!uid) {
+      throw new Error('User must be logged in');
+    }
+
+    return `users/${uid}/bands`;
+  }
 
   getBands(): Observable<Band[]> {
     return new Observable<Band[]>((subscriber) => {
-      const bandsRef = collection(this.db, 'bands');
+      const user = this.currentUser();
+
+      if (!user) {
+        subscriber.next([]);
+        return;
+      }
+
+      const bandsRef = collection(this.db, this.getUserBandsPath());
 
       const unsubscribe = onSnapshot(
         bandsRef,
@@ -40,9 +91,7 @@ export class BandService {
 
           subscriber.next(bands);
         },
-        (error) => {
-          subscriber.error(error);
-        },
+        (error) => subscriber.error(error),
       );
 
       return () => unsubscribe();
@@ -50,28 +99,25 @@ export class BandService {
   }
 
   addBand(band: Omit<Band, 'id'>) {
-    return addDoc(collection(this.db, 'bands'), band);
+    return addDoc(collection(this.db, this.getUserBandsPath()), band);
   }
 
   updateRecord(band: Band) {
-    if (!band.id) {
-      throw new Error('Band id is required for update');
-    }
+    if (!band.id) throw new Error('Band id is required for update');
 
     const { id, ...data } = band;
 
-    return updateDoc(doc(this.db, 'bands', String(id)), data);
+    return updateDoc(doc(this.db, this.getUserBandsPath(), String(id)), data);
   }
 
   deleteRecord(id: string | number) {
-    return deleteDoc(doc(this.db, 'bands', String(id)));
+    return deleteDoc(doc(this.db, this.getUserBandsPath(), String(id)));
   }
-  async getBandById(id: string | number): Promise<Band | undefined> {
-    const bandDoc = await getDoc(doc(this.db, 'bands', String(id)));
 
-    if (!bandDoc.exists()) {
-      return undefined;
-    }
+  async getBandById(id: string | number): Promise<Band | undefined> {
+    const bandDoc = await getDoc(doc(this.db, this.getUserBandsPath(), String(id)));
+
+    if (!bandDoc.exists()) return undefined;
 
     return {
       id: bandDoc.id,
@@ -79,13 +125,16 @@ export class BandService {
     };
   }
 
-  private storage = getStorage(this.app);
-
   async uploadBandPhotos(bandId: string | number, files: File[]) {
+    const uid = this.currentUser()?.uid;
+
+    if (!uid) throw new Error('User must be logged in');
+
     const uploadedUrls: string[] = [];
 
     for (const file of files) {
-      const filePath = `bands/${bandId}/${Date.now()}-${file.name}`;
+      const safeFileName = file.name.replace(/\s+/g, '-').toLowerCase();
+      const filePath = `users/${uid}/bands/${bandId}/${Date.now()}-${safeFileName}`;
       const fileRef = ref(this.storage, filePath);
 
       await uploadBytes(fileRef, file);
@@ -94,7 +143,7 @@ export class BandService {
       uploadedUrls.push(url);
     }
 
-    await updateDoc(doc(this.db, 'bands', String(bandId)), {
+    await updateDoc(doc(this.db, this.getUserBandsPath(), String(bandId)), {
       photoUrls: arrayUnion(...uploadedUrls),
     });
 

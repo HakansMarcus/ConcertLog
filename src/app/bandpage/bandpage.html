@@ -2,6 +2,7 @@
   <div class="hero-icon"></div>
 
   <h1>{{ band()?.name }}</h1>
+  <p>{{ band()?.date }}</p>
 
   <p>
     {{ band()?.venue }}
@@ -10,11 +11,6 @@
 
 <section class="photos-section">
   <h2>Photos</h2>
-
-  <label class="upload-box">
-    Upload photos
-    <input type="file" accept="image/*" multiple (change)="uploadPhotos($event)" />
-  </label>
 
   <div class="photo-grid">
     @for (photo of band()?.photoUrls ?? []; track photo) {
@@ -25,6 +21,10 @@
   </div>
 </section>
 
+<label class="upload-box">
+  Upload photos
+  <input type="file" accept="image/*" multiple (change)="uploadPhotos($event)" />
+</label>
 @if (selectedPhoto()) {
   <div class="photo-overlay" (click)="selectedPhoto.set(null)">
     <img [src]="selectedPhoto()!" (click)="$event.stopPropagation()" />
