@@ -118,13 +118,40 @@
   </section>
 
   <section class="stats-section">
-    <h2>Insights</h2>
+    <h2>Highlights</h2>
 
-    <ul>
-      <li>🎤 Most seen artist: {{ topArtists()[0]?.label || 'N/A' }}</li>
-      <li>🌍 Most visited city: {{ topCities()[0]?.label || 'N/A' }}</li>
-      <li>🔥 Busiest year: {{ busiestYear() }}</li>
-      <li>🏟 Favorite venue: {{ topVenues()[0]?.label || 'N/A' }}</li>
-    </ul>
+    <div class="dashboard-grid">
+      <article class="metric-widget">
+        <div class="metric-ring"></div>
+        <div class="metric-info">
+          <span>Top Artist</span>
+          <strong>{{ topArtists()[0]?.label || 'N/A' }}</strong>
+        </div>
+      </article>
+
+      <article class="metric-widget">
+        <div class="metric-bar"></div>
+        <div class="metric-info">
+          <span>Top City</span>
+          <strong>{{ topCities()[0]?.label || 'N/A' }}</strong>
+        </div>
+      </article>
+
+      <article class="metric-widget">
+        <div class="metric-wave"></div>
+        <div class="metric-info">
+          <span>Busiest Year</span>
+          <strong>{{ busiestYear() }}</strong>
+        </div>
+      </article>
+
+      <article class="metric-widget">
+        <div class="metric-pulse"></div>
+        <div class="metric-info">
+          <span>Favorite Venue</span>
+          <strong>{{ topVenues()[0]?.label || 'N/A' }}</strong>
+        </div>
+      </article>
+    </div>
   </section>
 </section>

@@ -293,3 +293,74 @@
 
   margin-top: 1rem;
 }
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.metric-widget {
+  position: relative;
+  overflow: hidden;
+
+  padding: 1.5rem;
+
+  border-radius: 20px;
+
+  background: linear-gradient(145deg, rgba(27, 18, 48, 0.95), rgba(36, 24, 67, 0.95));
+
+  border: 1px solid rgba(193, 51, 131, 0.18);
+
+  min-height: 160px;
+}
+
+.metric-info {
+  position: relative;
+  z-index: 2;
+}
+
+.metric-info span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.metric-info strong {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
+}
+
+/* visual effects */
+.metric-ring,
+.metric-bar,
+.metric-wave,
+.metric-pulse {
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+}
+
+.metric-ring {
+  background: radial-gradient(circle at center, transparent 45%, #792ca2 47%, transparent 50%);
+}
+
+.metric-bar {
+  background: repeating-linear-gradient(
+    90deg,
+    #792ca2 0px,
+    #792ca2 6px,
+    transparent 6px,
+    transparent 16px
+  );
+}
+
+.metric-wave {
+  background:
+    radial-gradient(circle at 20% 70%, #c13383 0 8%, transparent 10%),
+    radial-gradient(circle at 60% 40%, #792ca2 0 8%, transparent 10%);
+}
+
+.metric-pulse {
+  background: radial-gradient(circle at center, rgba(193, 51, 131, 0.35), transparent 55%);
+}

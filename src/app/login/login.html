@@ -1,11 +1,27 @@
 <section class="login-page">
-  <article class="login-card">
-    <div class="login-logo"></div>
+  <div class="intro-panel">
+    <p class="eyebrow">ConcertLog</p>
 
-    <h1>ConcertLog</h1>
+    <h1>Build your live music archive.</h1>
 
-    <p>Sign in to track your concerts, photos, stats, and memories.</p>
+    <p class="intro-text">
+      Track every concert you've attended, upload memories, explore your stats, and build your own
+      personal concert history.
+    </p>
 
-    <button class="google-btn" (click)="login()">Sign in with Google</button>
-  </article>
+    <ul class="feature-list">
+      <li>Track artists, venues, and cities</li>
+      <li>Upload concert photos</li>
+      <li>View analytics and maps</li>
+      <li>Plan upcoming shows</li>
+    </ul>
+  </div>
+
+  <div class="login-panel">
+    <h2>Sign in</h2>
+
+    <p>Start building your archive.</p>
+
+    <button class="google-btn" (click)="login()">Continue with Google</button>
+  </div>
 </section>

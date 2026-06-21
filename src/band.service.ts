@@ -1,5 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
+import { arrayRemove } from 'firebase/firestore';
+import { deleteObject } from 'firebase/storage';
 
 import { initializeApp, getApps, getApp } from 'firebase/app';
 
@@ -148,5 +150,22 @@ export class BandService {
     });
 
     return uploadedUrls;
+  }
+
+  async deleteBandPhoto(bandId: string | number, photoUrl: string) {
+    const uid = this.currentUser()?.uid;
+
+    if (!uid) throw new Error('User must be logged in');
+
+    try {
+      const fileRef = ref(this.storage, photoUrl);
+      await deleteObject(fileRef);
+    } catch (error) {
+      console.warn('Could not delete file from Storage, removing URL only:', error);
+    }
+
+    await updateDoc(doc(this.db, this.getUserBandsPath(), String(bandId)), {
+      photoUrls: arrayRemove(photoUrl),
+    });
   }
 }

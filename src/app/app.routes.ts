@@ -3,7 +3,9 @@ import { Routes } from '@angular/router';
 import { Home } from './home/home';
 import { Stats } from './stats/stats';
 import { BandPage } from './bandpage/bandpage';
+import { PlannedConcerts } from './plannedconcerts/plannedconcerts';
 import { Login } from './login/login';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -14,16 +16,25 @@ export const routes: Routes = [
   {
     path: '',
     component: Home,
+    canActivate: [authGuard],
   },
 
   {
     path: 'stats',
     component: Stats,
+    canActivate: [authGuard],
   },
 
   {
     path: 'bandpage/:id',
     component: BandPage,
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'plannedconcerts',
+    component: PlannedConcerts,
+    canActivate: [authGuard],
   },
 
   {

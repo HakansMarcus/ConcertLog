@@ -1,0 +1,145 @@
+.planned-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.planned-header {
+  text-align: center;
+
+  margin-bottom: 2rem;
+}
+
+.planned-header h1 {
+  margin: 0;
+
+  color: var(--text);
+  text-shadow:
+    0 0 10px rgba(193, 51, 131, 0.4),
+    0 0 25px rgba(121, 44, 162, 0.3);
+}
+
+.planned-header p {
+  color: var(--text-muted);
+}
+
+.next-card {
+  margin-bottom: 2rem;
+
+  padding: 2rem;
+
+  border-radius: 20px;
+
+  background: linear-gradient(135deg, var(--surface), var(--surface-hover));
+
+  border: 1px solid var(--border);
+
+  text-align: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.next-card h2 {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+.meta {
+  color: var(--text-muted);
+}
+
+.countdown {
+  margin-top: 1rem;
+
+  display: inline-block;
+
+  padding: 0.8rem 1.2rem;
+
+  border-radius: 999px;
+
+  font-weight: 700;
+
+  color: white;
+
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.planned-list h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.planned-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 1.25rem;
+
+  margin-bottom: 1rem;
+
+  border-radius: 16px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  transition: 0.2s;
+}
+
+.planned-card:hover {
+  background: var(--surface-hover);
+}
+
+.planned-card h3 {
+  margin: 0;
+}
+
+.planned-card p {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+}
+
+.planned-card span {
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.empty-state {
+  text-align: center;
+
+  padding: 3rem;
+
+  border-radius: 16px;
+
+  background: var(--surface);
+}
+.planned-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+}
+
+.add-planned-btn {
+  padding: 0.8rem 1rem;
+
+  border: none;
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  color: white;
+
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.add-planned-btn:hover {
+  transform: translateY(-1px);
+}

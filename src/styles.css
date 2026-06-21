@@ -23,6 +23,52 @@ body {
   color: var(--text);
 }
 
+/* Datepicker popup */
+.mat-datepicker-content,
+.mat-mdc-datepicker-content {
+  background: #1b1230 !important;
+  color: white !important;
+}
+
+/* Header */
+.mat-calendar-header {
+  color: white !important;
+}
+
+/* Month/year text */
+.mat-calendar-period-button,
+.mat-calendar-previous-button,
+.mat-calendar-next-button {
+  color: white !important;
+}
+
+/* Normal days */
+.mat-calendar-body-cell-content {
+  color: #f8f5ff !important;
+}
+
+/* Hover */
+.mat-calendar-body-cell:hover .mat-calendar-body-cell-content {
+  background: rgba(193, 51, 131, 0.2) !important;
+}
+
+/* Selected date */
+.mat-calendar-body-selected {
+  background: linear-gradient(135deg, #792ca2, #c13383) !important;
+  color: white !important;
+}
+
+/* Today's date */
+.mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border-color: #c13383 !important;
+  color: #ffffff !important;
+}
+
+/* Disabled dates */
+.mat-calendar-body-disabled {
+  opacity: 0.35;
+}
+
 /* .mat-datepicker-content,
 .mat-calendar {
   background: #4a5469;

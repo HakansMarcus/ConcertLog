@@ -1,0 +1,44 @@
+<section class="planned-page">
+  <header class="planned-header">
+    <h1>Upcoming Concerts</h1>
+    <p>Concerts you are looking forward to.</p>
+  </header>
+  <div class="planned-actions">
+    <app-searchbar (search)="updateSearch($event)"></app-searchbar>
+
+    <button class="add-planned-btn" (click)="openModal()">Add planned concert</button>
+  </div>
+  @if (nextConcert()) {
+    <section class="next-card">
+      <p class="eyebrow">Next up</p>
+
+      <h2>{{ nextConcert().name }}</h2>
+
+      <p class="meta">
+        {{ nextConcert().date }} • {{ nextConcert().venue }} • {{ nextConcert().city }}
+      </p>
+
+      <div class="countdown">{{ daysUntil(nextConcert().date) }} days left</div>
+    </section>
+  }
+
+  <section class="planned-list">
+    <h2>All upcoming</h2>
+
+    @for (concert of filteredUpcomingConcerts(); track concert.id) {
+      <article class="planned-card">
+        <div>
+          <h3>{{ concert.name }}</h3>
+          <p>{{ concert.venue }} • {{ concert.city }}</p>
+        </div>
+
+        <span>{{ daysUntil(concert.date) }} days</span>
+      </article>
+    } @empty {
+      <div class="empty-state">
+        <p>No upcoming concerts yet.</p>
+        <small>Add a future concert to start planning.</small>
+      </div>
+    }
+  </section>
+</section>

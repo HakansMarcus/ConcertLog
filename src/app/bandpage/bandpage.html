@@ -14,7 +14,11 @@
 
   <div class="photo-grid">
     @for (photo of band()?.photoUrls ?? []; track photo) {
-      <img [src]="photo" alt="Concert photo" (click)="selectedPhoto.set(photo)" />
+      <div class="photo-item">
+        <img [src]="photo" alt="Concert photo" (click)="selectedPhoto.set(photo)" />
+
+        <button class="delete-photo-btn" (click)="deletePhoto(photo, $event)">X</button>
+      </div>
     } @empty {
       <p>No photos uploaded yet.</p>
     }

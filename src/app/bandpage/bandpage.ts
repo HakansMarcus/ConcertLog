@@ -57,4 +57,15 @@ export class BandPage {
       this.uploading.set(false);
     }
   }
+
+  async deletePhoto(photoUrl: string, event: Event) {
+    event.stopPropagation();
+
+    if (!this.band()?.id) return;
+
+    await this.bandService.deleteBandPhoto(this.band()!.id!, photoUrl);
+
+    const refreshedBand = await this.bandService.getBandById(this.band()!.id!);
+    this.band.set(refreshedBand);
+  }
 }
