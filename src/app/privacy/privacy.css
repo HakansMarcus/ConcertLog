@@ -1,0 +1,25 @@
+.legal-page {
+  max-width: 850px;
+  margin: 3rem auto;
+  padding: 2rem;
+
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+
+  color: var(--text);
+}
+
+.legal-page h1 {
+  margin-bottom: 1.5rem;
+}
+
+.legal-page h2 {
+  margin-top: 2rem;
+  color: var(--secondary);
+}
+
+.legal-page p {
+  color: var(--text-muted);
+  line-height: 1.7;
+}

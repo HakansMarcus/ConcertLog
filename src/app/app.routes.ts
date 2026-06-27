@@ -6,6 +6,8 @@ import { BandPage } from './bandpage/bandpage';
 import { PlannedConcerts } from './plannedconcerts/plannedconcerts';
 import { Login } from './login/login';
 import { authGuard } from './auth.guard';
+import { Privacy } from './privacy/privacy';
+import { Terms } from './terms/terms';
 
 export const routes: Routes = [
   {
@@ -35,6 +37,14 @@ export const routes: Routes = [
     path: 'plannedconcerts',
     component: PlannedConcerts,
     canActivate: [authGuard],
+  },
+  {
+    path: 'privacy',
+    component: Privacy,
+  },
+  {
+    path: 'terms',
+    component: Terms,
   },
 
   {

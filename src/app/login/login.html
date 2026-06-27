@@ -20,8 +20,13 @@
   <div class="login-panel">
     <h2>Sign in</h2>
 
-    <p>Start building your archive.</p>
+    <p>Start building your archive. Please read Privacy Policy and Terms before signing up</p>
 
     <button class="google-btn" (click)="login()">Continue with Google</button>
+    <div class="legal-links">
+      <a routerLink="/privacy">Privacy Policy</a>
+      <span>•</span>
+      <a routerLink="/terms">Terms</a>
+    </div>
   </div>
 </section>
