@@ -18,6 +18,7 @@ import { Card } from '../card/card';
 export class Home {
   private bandService = inject(BandService);
   sortDirection = signal<'desc' | 'asc'>('desc');
+  viewMode = signal<'list' | 'grid'>('list');
   private dialog = inject(MatDialog);
 
   bands = toSignal(this.bandService.getBands(), {
@@ -55,6 +56,14 @@ export class Home {
 
   sortBandsByDate() {
     this.sortDirection.update((direction) => (direction === 'desc' ? 'asc' : 'desc'));
+  }
+
+  setGridView() {
+    this.viewMode.set('grid');
+  }
+
+  setListView() {
+    this.viewMode.set('list');
   }
 
   totalConcerts = computed(() => this.bands().length);

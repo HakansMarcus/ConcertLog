@@ -11,9 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatFormFieldModule, MatInputModule, MatIconModule],
 })
 export class Searchbar {
-  constructor() {
-    console.log('SEARCHBAR LOADED');
-  }
+  constructor() {}
   @Output() search = new EventEmitter<string>();
 
   onSearch(event: Event) {

@@ -7,7 +7,9 @@
 
   padding: 2rem;
 }
-
+.support-section {
+  margin-top: 1rem;
+}
 .login-card {
   width: 100%;
   max-width: 500px;
@@ -41,6 +43,14 @@
 
   color: var(--text-muted);
   line-height: 1.6;
+}
+
+.legal-links {
+  margin-top: 0.5rem;
+
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
 }
 
 .google-btn {
@@ -151,6 +161,8 @@
   flex-direction: column;
   justify-content: center;
 
+  gap: 1.25rem;
+
   padding: 3rem;
 
   background: rgba(8, 6, 15, 0.55);
@@ -164,11 +176,8 @@
   font-size: 2rem;
   margin: 0 0 0.5rem;
 }
-
 .login-panel p {
-  color: rgba(255, 255, 255, 0.65);
-
-  margin-bottom: 2rem;
+  margin: 0;
 }
 
 .google-btn {
@@ -216,4 +225,33 @@
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
+}
+
+.coffee-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 0.8rem 1.2rem;
+
+  border-radius: 12px;
+
+  text-decoration: none;
+  font-weight: 600;
+
+  color: white;
+
+  background: linear-gradient(135deg, #ff813f, #ff5f5f);
+
+  box-shadow:
+    0 0 14px rgba(255, 129, 63, 0.25),
+    0 0 24px rgba(255, 95, 95, 0.15);
+
+  transition: 0.2s ease;
+}
+
+.coffee-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 0 20px rgba(255, 129, 63, 0.4),
+    0 0 32px rgba(255, 95, 95, 0.2);
 }

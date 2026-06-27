@@ -19,6 +19,35 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
+.navbar-nav {
+  list-style: none !important;
+  padding-left: 0;
+  margin: 0;
+}
+
+.navbar-nav .nav-item {
+  list-style: none !important;
+}
+
+.navbar-nav .nav-link::marker {
+  content: none;
+}
+.support-link {
+  color: #ffb86c !important;
+
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.support-link:hover {
+  color: #ffd699 !important;
+
+  text-shadow:
+    0 0 8px rgba(255, 184, 108, 0.45),
+    0 0 16px rgba(255, 184, 108, 0.25);
+}
+
 .navbar-brand {
   color: #c13383;
 
