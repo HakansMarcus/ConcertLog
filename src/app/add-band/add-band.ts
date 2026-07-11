@@ -88,6 +88,7 @@ export class AddBand {
         city: form.city,
         date: formattedDate,
         venue: form.venue ?? '',
+        status: this.data.band.status ?? 'attended',
       };
 
       await this.bandService.updateRecord(updatedBand);
@@ -103,6 +104,7 @@ export class AddBand {
         date: formattedDate,
         venue: form.venue ?? '',
         festival: '',
+        status: this.data?.status ?? 'attended',
       };
 
       await this.bandService.addBand(newBand);

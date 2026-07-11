@@ -1,5 +1,6 @@
 export interface Band {
   id?: string | number;
+  status: 'planned' | 'attended';
 
   name: string;
   city: string;

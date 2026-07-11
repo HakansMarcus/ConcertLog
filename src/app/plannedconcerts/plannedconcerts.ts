@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BandService } from '../../band.service';
 import { Searchbar } from '../searchbar/searchbar';
 import { AddBand } from '../add-band/add-band';
+import { Band } from '../band.model';
 
 @Component({
   selector: 'app-plannedconcerts',
@@ -24,10 +25,8 @@ export class PlannedConcerts {
   searchTerm = signal('');
 
   upcomingConcerts = computed(() => {
-    const today = new Date().toISOString().split('T')[0];
-
     return this.bands()
-      .filter((band) => band.date >= today)
+      .filter((band) => band.status === 'planned')
       .sort((a, b) => a.date.localeCompare(b.date));
   });
 
@@ -48,6 +47,16 @@ export class PlannedConcerts {
       width: '420px',
       enterAnimationDuration: '150ms',
       exitAnimationDuration: '150ms',
+      data: {
+        status: 'planned',
+      },
+    });
+  }
+
+  async markAsAttended(concert: Band) {
+    await this.bandService.updateRecord({
+      ...concert,
+      status: 'attended',
     });
   }
 

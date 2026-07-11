@@ -158,8 +158,12 @@ export class Stats implements AfterViewInit {
 
   topVenues = computed(() => this.countBy('venue').slice(0, 5));
 
-  latestConcert = computed(() => [...this.bands()].sort((a, b) => b.date.localeCompare(a.date))[0]);
-
+  latestConcert = computed(
+    () =>
+      [...this.bands()]
+        .filter((b) => b.status === 'attended' || !b.status)
+        .sort((a, b) => b.date.localeCompare(a.date))[0],
+  );
   firstConcert = computed(() => [...this.bands()].sort((a, b) => a.date.localeCompare(b.date))[0]);
 
   busiestYear = computed(() => {

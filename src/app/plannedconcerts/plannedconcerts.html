@@ -32,7 +32,8 @@
           <p>{{ concert.venue }} • {{ concert.city }}</p>
         </div>
 
-        <span>{{ daysUntil(concert.date) }} days</span>
+        <span>{{ daysUntil(concert.date) }} days left</span>
+        <button class="attended-btn" (click)="markAsAttended(concert)">Attended</button>
       </article>
     } @empty {
       <div class="empty-state">

@@ -39,8 +39,9 @@ export class Home {
   filteredBands = computed(() => {
     const term = this.searchTerm().toLowerCase();
 
-    let result = this.bands().filter((b) => b.name.toLowerCase().includes(term));
-
+    let result = this.bands().filter(
+      (b) => (b.status === 'attended' || !b.status) && b.name.toLowerCase().includes(term),
+    );
     result = [...result].sort((a, b) => {
       return this.sortDirection() === 'desc'
         ? b.date.localeCompare(a.date)
@@ -66,5 +67,7 @@ export class Home {
     this.viewMode.set('list');
   }
 
-  totalConcerts = computed(() => this.bands().length);
+  totalConcerts = computed(
+    () => this.bands().filter((b) => b.status === 'attended' || !b.status).length,
+  );
 }
