@@ -1,11 +1,13 @@
 .planned-page {
   max-width: 1000px;
   margin: 0 auto;
+  padding: 0 1rem 3rem;
 }
+
+/* HEADER */
 
 .planned-header {
   text-align: center;
-
   margin-bottom: 2rem;
 }
 
@@ -13,6 +15,7 @@
   margin: 0;
 
   color: var(--text);
+
   text-shadow:
     0 0 10px rgba(193, 51, 131, 0.4),
     0 0 25px rgba(121, 44, 162, 0.3);
@@ -22,124 +25,18 @@
   color: var(--text-muted);
 }
 
-.next-card {
-  margin-bottom: 2rem;
+/* SEARCH + ADD */
 
-  padding: 2rem;
-
-  border-radius: 20px;
-
-  background: linear-gradient(135deg, var(--surface), var(--surface-hover));
-
-  border: 1px solid var(--border);
-
-  text-align: center;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-}
-
-.next-card h2 {
-  font-size: 2rem;
-  margin: 0.5rem 0;
-}
-
-.meta {
-  color: var(--text-muted);
-}
-
-.countdown {
-  margin-top: 1rem;
-
-  display: inline-block;
-
-  padding: 0.8rem 1.2rem;
-
-  border-radius: 999px;
-
-  font-weight: 700;
-
-  color: white;
-
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-}
-
-.planned-list h2 {
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.planned-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 1rem 1.25rem;
-
-  margin-bottom: 1rem;
-
-  border-radius: 16px;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-
-  transition: 0.2s;
-}
-
-.planned-card:hover {
-  background: var(--surface-hover);
-}
-
-.planned-card h3 {
-  margin: 0;
-}
-
-.planned-card p {
-  margin: 0.25rem 0 0;
-  color: var(--text-muted);
-}
-
-.planned-card span {
-  font-weight: 700;
-  color: var(--secondary);
-}
-
-.empty-state {
-  text-align: center;
-
-  padding: 3rem;
-
-  border-radius: 16px;
-
-  background: var(--surface);
-}
 .planned-actions {
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 1rem;
 
   margin-bottom: 2rem;
 }
-.planned-card-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
 
-.attended-btn {
-  border: none;
-  border-radius: 999px;
-  padding: 0.5rem 0.9rem;
-  cursor: pointer;
-  color: white;
-  background: linear-gradient(135deg, #792ca2, #c13383);
-}
 .add-planned-btn {
   padding: 0.8rem 1rem;
 
@@ -151,8 +48,397 @@
   color: white;
 
   background: linear-gradient(135deg, var(--primary), var(--secondary));
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .add-planned-btn:hover {
   transform: translateY(-1px);
+
+  box-shadow: 0 0 15px rgba(193, 51, 131, 0.25);
+}
+
+/* NEXT CONCERT */
+
+.next-card {
+  margin-bottom: 2rem;
+  padding: 2rem;
+
+  border-radius: 20px;
+
+  background: linear-gradient(135deg, var(--surface), var(--surface-hover));
+
+  border: 1px solid var(--border);
+
+  text-align: center;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    0 0 25px rgba(121, 44, 162, 0.05);
+}
+
+.eyebrow {
+  margin-bottom: 0.5rem;
+
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  color: var(--text-muted);
+}
+
+.next-card h2 {
+  margin: 0.5rem 0;
+
+  font-size: 2rem;
+
+  color: var(--text);
+}
+
+.meta {
+  color: var(--text-muted);
+}
+
+.countdown {
+  display: inline-block;
+
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+
+  border-radius: 999px;
+
+  font-weight: 700;
+
+  color: white;
+
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+
+  box-shadow: 0 0 18px rgba(193, 51, 131, 0.2);
+}
+
+/* UPCOMING LIST */
+
+.planned-list h2 {
+  margin-bottom: 1rem;
+
+  text-align: center;
+}
+
+/* CONCERT CARD */
+
+.planned-card {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 90px;
+
+  align-items: center;
+
+  gap: 1.5rem;
+
+  padding: 1.2rem 3.8rem 1.2rem 1.4rem;
+
+  margin-bottom: 1rem;
+
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, var(--surface), rgba(121, 44, 162, 0.06));
+
+  border: 1px solid var(--border);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.planned-card:hover {
+  transform: translateY(-2px);
+
+  background: linear-gradient(135deg, var(--surface-hover), rgba(121, 44, 162, 0.1));
+
+  border-color: rgba(193, 51, 131, 0.4);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.2),
+    0 0 18px rgba(121, 44, 162, 0.08);
+}
+
+/* CONCERT INFORMATION */
+
+.concert-info {
+  min-width: 0;
+}
+
+.concert-info h3 {
+  margin: 0;
+
+  font-size: 1.1rem;
+
+  color: var(--text);
+}
+
+.concert-info p {
+  margin: 0.3rem 0 0;
+
+  color: var(--text-muted);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* CARD COUNTDOWN */
+
+.concert-countdown {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 75px;
+
+  padding: 0.5rem 0.7rem;
+
+  border-radius: 10px;
+
+  background: rgba(193, 51, 131, 0.07);
+
+  border: 1px solid rgba(193, 51, 131, 0.15);
+}
+
+.concert-countdown span {
+  font-size: 1.15rem;
+  font-weight: 700;
+
+  line-height: 1;
+
+  color: var(--secondary);
+}
+
+.concert-countdown small {
+  margin-top: 0.3rem;
+
+  font-size: 0.65rem;
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  color: var(--text-muted);
+}
+
+/* THREE DOT MENU BUTTON */
+
+.menu-btn {
+  position: absolute;
+
+  top: 0.65rem;
+  right: 0.65rem;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+
+  color: var(--text-muted);
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.menu-btn:hover {
+  color: var(--secondary);
+
+  background: rgba(193, 51, 131, 0.1);
+
+  box-shadow: 0 0 10px rgba(193, 51, 131, 0.1);
+}
+
+.menu-btn mat-icon {
+  width: 22px;
+  height: 22px;
+
+  font-size: 22px;
+}
+
+/* EMPTY STATE */
+
+.empty-state {
+  padding: 3rem;
+
+  border-radius: 16px;
+
+  text-align: center;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+}
+
+.empty-state p {
+  margin-bottom: 0.4rem;
+}
+
+.empty-state small {
+  color: var(--text-muted);
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .planned-page {
+    padding: 0 0.75rem 2rem;
+  }
+
+  /* HEADER */
+
+  .planned-header {
+    margin-bottom: 1.5rem;
+  }
+
+  /* SEARCH + ADD */
+
+  .planned-actions {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 0.75rem;
+  }
+
+  .add-planned-btn {
+    width: 100%;
+  }
+
+  /* NEXT CONCERT */
+
+  .next-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .next-card h2 {
+    font-size: 1.6rem;
+    line-height: 1.25;
+  }
+
+  .meta {
+    line-height: 1.6;
+  }
+
+  /* UPCOMING CONCERT CARD */
+
+  .planned-card {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) auto;
+
+    grid-template-areas:
+      'info menu'
+      'countdown countdown';
+
+    align-items: start;
+
+    gap: 0.8rem;
+
+    padding: 1rem;
+
+    margin-bottom: 1rem;
+  }
+
+  /* CONCERT INFORMATION */
+
+  .concert-info {
+    grid-area: info;
+
+    min-width: 0;
+  }
+
+  .concert-info h3 {
+    margin: 0;
+
+    font-size: 1rem;
+    line-height: 1.35;
+
+    white-space: normal;
+    overflow: visible;
+
+    overflow-wrap: anywhere;
+  }
+
+  .concert-info p {
+    margin: 0.35rem 0 0;
+
+    font-size: 0.78rem;
+    line-height: 1.45;
+
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+
+    overflow-wrap: anywhere;
+  }
+
+  /* COUNTDOWN */
+
+  .concert-countdown {
+    grid-area: countdown;
+
+    width: fit-content;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.35rem;
+
+    padding: 0.45rem 0.7rem;
+  }
+
+  .concert-countdown span {
+    font-size: 0.9rem;
+
+    line-height: 1;
+  }
+
+  .concert-countdown small {
+    margin: 0;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 0.5px;
+  }
+
+  /* THREE DOT MENU */
+
+  .menu-btn {
+    grid-area: menu;
+
+    position: static;
+
+    width: 32px;
+    height: 32px;
+
+    align-self: start;
+    justify-self: end;
+
+    flex-shrink: 0;
+  }
 }

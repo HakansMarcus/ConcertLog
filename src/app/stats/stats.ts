@@ -33,7 +33,7 @@ export class Stats implements AfterViewInit {
   private map?: L.Map;
   private markersLayer?: L.LayerGroup;
 
-  /**CHANGE TO GET THE LON / LAT THROUGH API */
+  /** CHANGE TO GET THE LON / LAT THROUGH API */
 
   cityCoordinates: Record<string, [number, number]> = {
     Stockholm: [59.3293, 18.0686],
@@ -51,6 +51,12 @@ export class Stats implements AfterViewInit {
   bands = toSignal(this.bandService.getBands(), {
     initialValue: [],
   });
+
+  // Only concerts that have actually been attended.
+  // Old records without a status are treated as attended.
+  attendedBands = computed(() =>
+    this.bands().filter((band) => band.status === 'attended' || !band.status),
+  );
 
   constructor() {
     effect(() => {
@@ -144,13 +150,20 @@ export class Stats implements AfterViewInit {
     },
   };
 
-  totalConcerts = computed(() => this.bands().length);
+  totalConcerts = computed(() => this.attendedBands().length);
 
-  uniqueArtists = computed(() => new Set(this.bands().map((b) => b.name)).size);
+  uniqueArtists = computed(() => new Set(this.attendedBands().map((b) => b.name.trim())).size);
 
-  uniqueCities = computed(() => new Set(this.bands().map((b) => b.city)).size);
+  uniqueCities = computed(() => new Set(this.attendedBands().map((b) => b.city.trim())).size);
 
-  uniqueVenues = computed(() => new Set(this.bands().map((b) => b.venue)).size);
+  uniqueVenues = computed(
+    () =>
+      new Set(
+        this.attendedBands()
+          .map((b) => b.venue?.trim())
+          .filter(Boolean),
+      ).size,
+  );
 
   topArtists = computed(() => this.countBy('name').slice(0, 5));
 
@@ -159,22 +172,23 @@ export class Stats implements AfterViewInit {
   topVenues = computed(() => this.countBy('venue').slice(0, 5));
 
   latestConcert = computed(
-    () =>
-      [...this.bands()]
-        .filter((b) => b.status === 'attended' || !b.status)
-        .sort((a, b) => b.date.localeCompare(a.date))[0],
+    () => [...this.attendedBands()].sort((a, b) => b.date.localeCompare(a.date))[0],
   );
-  firstConcert = computed(() => [...this.bands()].sort((a, b) => a.date.localeCompare(b.date))[0]);
+
+  firstConcert = computed(
+    () => [...this.attendedBands()].sort((a, b) => a.date.localeCompare(b.date))[0],
+  );
 
   busiestYear = computed(() => {
-    const years = this.bands().map((b) => b.date.slice(0, 4));
+    const years = this.attendedBands().map((b) => b.date.slice(0, 4));
+
     const counts = this.countArray(years);
 
     return counts[0]?.label ?? 'N/A';
   });
 
   concertsPerYear = computed(() => {
-    const years = this.bands().map((b) => b.date.slice(0, 4));
+    const years = this.attendedBands().map((b) => b.date.slice(0, 4));
 
     return this.countArray(years).sort((a, b) => a.label.localeCompare(b.label));
   });
@@ -227,8 +241,15 @@ export class Stats implements AfterViewInit {
   private countBy(key: 'name' | 'city' | 'venue') {
     const map = new Map<string, number>();
 
-    for (const band of this.bands()) {
-      const value = band[key];
+    for (const band of this.attendedBands()) {
+      const rawValue = band[key];
+
+      if (!rawValue) continue;
+
+      // Prevent values such as
+      // "The Amity Affliction" and
+      // "The Amity Affliction " from being counted separately.
+      const value = rawValue.trim();
 
       if (!value) continue;
 
@@ -236,19 +257,29 @@ export class Stats implements AfterViewInit {
     }
 
     return Array.from(map.entries())
-      .map(([label, count]) => ({ label, count }))
+      .map(([label, count]) => ({
+        label,
+        count,
+      }))
       .sort((a, b) => b.count - a.count);
   }
 
   private countArray(values: string[]) {
     const map = new Map<string, number>();
 
-    for (const value of values) {
+    for (const rawValue of values) {
+      const value = rawValue.trim();
+
+      if (!value) continue;
+
       map.set(value, (map.get(value) ?? 0) + 1);
     }
 
     return Array.from(map.entries())
-      .map(([label, count]) => ({ label, count }))
+      .map(([label, count]) => ({
+        label,
+        count,
+      }))
       .sort((a, b) => b.count - a.count);
   }
 }

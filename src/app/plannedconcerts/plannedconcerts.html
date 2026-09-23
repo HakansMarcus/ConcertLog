@@ -27,13 +27,37 @@
 
     @for (concert of filteredUpcomingConcerts(); track concert.id) {
       <article class="planned-card">
-        <div>
+        <div class="concert-info">
           <h3>{{ concert.name }}</h3>
-          <p>{{ concert.venue }} • {{ concert.city }}</p>
+          <p>{{ concert.date }} • {{ concert.city }} • {{ concert.venue }}</p>
         </div>
 
-        <span>{{ daysUntil(concert.date) }} days left</span>
-        <button class="attended-btn" (click)="markAsAttended(concert)">Attended</button>
+        <div class="concert-countdown">
+          <span>{{ daysUntil(concert.date) }}</span>
+          <small>days left</small>
+        </div>
+
+        <!-- 3-dot menu -->
+        <button class="menu-btn" [matMenuTriggerFor]="concertMenu" aria-label="Concert options">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #concertMenu="matMenu">
+          <button mat-menu-item (click)="markAsAttended(concert)">
+            <mat-icon>check</mat-icon>
+            <span>Attended</span>
+          </button>
+
+          <button mat-menu-item (click)="editConcert(concert)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+
+          <button mat-menu-item class="delete-menu-item" (click)="deleteConcert(concert)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
       </article>
     } @empty {
       <div class="empty-state">

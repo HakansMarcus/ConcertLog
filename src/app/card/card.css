@@ -1,106 +1,144 @@
 .card {
-  background: linear-gradient(145deg, #1b1230, #140d24);
+  position: relative;
 
-  border: 1px solid rgba(193, 51, 131, 0.2);
+  min-height: 95px;
+  padding: 1.4rem 3.5rem 1.4rem 1.4rem;
 
   border-radius: 14px;
-  padding: 1.4rem;
 
-  transition: all 0.25s ease;
+  background: rgba(18, 11, 32, 0.78);
+  border: 1px solid rgba(193, 51, 131, 0.25);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
 
-  border-color: #c13383;
+  background: rgba(27, 16, 46, 0.9);
+  border-color: rgba(193, 51, 131, 0.45);
 
   box-shadow:
-    0 0 20px rgba(193, 51, 131, 0.25),
-    0 0 40px rgba(121, 44, 162, 0.15);
+    0 8px 25px rgba(0, 0, 0, 0.2),
+    0 0 18px rgba(121, 44, 162, 0.08);
 }
+
+/* ARTIST */
+
 .band-name {
+  padding-right: 1rem;
+
   color: #ffffff;
 
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
 
-  margin-bottom: 0.4rem;
+  line-height: 1.3;
 }
+
+/* DATE / VENUE / CITY */
 
 .meta {
-  color: var(--text-muted);
+  margin-top: 0.55rem;
+
+  color: #bbe1fa;
 
   font-size: 0.9rem;
+  line-height: 1.4;
 }
+
 .festival {
-  display: inline-block;
+  margin-top: 0.35rem;
 
-  margin-top: 0.75rem;
-
-  padding: 4px 10px;
-
-  border-radius: 999px;
-
-  background: rgba(193, 51, 131, 0.15);
-
-  color: #ff7fd0;
-
-  font-weight: 600;
+  color: rgba(193, 51, 131, 0.9);
 }
 
-/*DELETE */
-.delete {
-  display: flex;
-  justify-content: flex-end;
-}
+/* THREE DOT BUTTON */
 
-/* reset button styling */
-.delete-btn {
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+.menu-btn {
+  all: unset;
+
+  position: absolute;
+
+  top: 0.65rem;
+  right: 0.65rem;
+
+  width: 34px;
+  height: 34px;
+
   display: flex;
   align-items: center;
-}
+  justify-content: center;
 
-.delete-btn .material-icons {
-  color: #e05454;
-}
+  border-radius: 8px;
 
-.delete-btn:hover .material-icons {
-  filter: drop-shadow(0 0 8px rgba(224, 84, 84, 0.5));
-}
+  color: rgba(187, 225, 250, 0.65);
 
-/*EDIT BUTTON*/
-
-.edit {
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* reset button styling */
-.edit-btn {
-  background: transparent;
-  border: none;
-  padding: 0;
   cursor: pointer;
-  display: flex;
-  align-items: center;
+
+  z-index: 5;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
-.edit-btn:hover .material-icons {
+.menu-btn:hover {
   color: #c13383;
+
+  background: rgba(193, 51, 131, 0.1);
+
+  box-shadow: 0 0 12px rgba(193, 51, 131, 0.15);
+
+  transform: scale(1.05);
 }
 
-/* icon color */
-.edit-btn .material-icons {
-  color: #792ca2;
+.menu-btn .material-icons {
+  width: 22px;
+  height: 22px;
+
+  font-size: 22px;
+  line-height: 22px;
+
+  text-align: center;
 }
 
-.actionButtons {
-  display: flex;
-  justify-content: space-between;
+/* ICONS INSIDE MENU */
 
-  margin-top: 1rem;
+.menu-icon {
+  margin-right: 12px;
+
+  font-size: 19px;
+  vertical-align: middle;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .card {
+    min-height: 85px;
+
+    padding: 1.1rem 3rem 1.1rem 1.1rem;
+  }
+
+  .band-name {
+    font-size: 1.05rem;
+  }
+
+  .meta {
+    font-size: 0.8rem;
+  }
+
+  .menu-btn {
+    top: 0.45rem;
+    right: 0.45rem;
+  }
 }

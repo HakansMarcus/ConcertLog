@@ -1,23 +1,36 @@
 <div class="card" [routerLink]="['/bandpage', band().id]">
-  <div class="band-name">{{ band().name }}</div>
+  <button
+    class="menu-btn"
+    [matMenuTriggerFor]="concertMenu"
+    aria-label="Concert options"
+    (click)="$event.stopPropagation()"
+  >
+    <span class="material-icons">more_vert</span>
+  </button>
+
+  <mat-menu #concertMenu="matMenu">
+    <button mat-menu-item (click)="$event.stopPropagation(); openEditModal()">
+      <span class="material-icons menu-icon">edit</span>
+      <span>Edit</span>
+    </button>
+
+    <button
+      mat-menu-item
+      class="delete-menu-item"
+      (click)="$event.stopPropagation(); deleteRecord()"
+    >
+      <span class="material-icons menu-icon">delete</span>
+      <span>Delete</span>
+    </button>
+  </mat-menu>
+
+  <div class="band-name">
+    {{ band().name }}
+  </div>
 
   <div class="meta">{{ band().date }} • {{ band().venue }} • {{ band().city }}</div>
 
   @if (band().festival) {
     <div class="meta festival">Festival: {{ band().festival }}</div>
   }
-
-  <div class="actionButtons">
-    <div class="delete">
-      <button class="delete-btn" (click)="$event.stopPropagation(); deleteRecord()">
-        <span class="material-icons">delete</span>
-      </button>
-    </div>
-
-    <div class="edit">
-      <button class="edit-btn" (click)="$event.stopPropagation(); openEditModal()">
-        <span class="material-icons">mode_edit</span>
-      </button>
-    </div>
-  </div>
 </div>

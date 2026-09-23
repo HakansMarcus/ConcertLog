@@ -2,7 +2,6 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-
   color: #bbe1fa;
 }
 
@@ -18,6 +17,7 @@
 
   font-size: 2.5rem;
   font-weight: 800;
+
   letter-spacing: 3px;
   text-transform: uppercase;
 
@@ -40,6 +40,7 @@
 
 .overview-grid {
   display: grid;
+
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 
   gap: 1.25rem;
@@ -48,21 +49,23 @@
 }
 
 .stat-card {
+  padding: 1.5rem;
+
   background: rgba(27, 18, 48, 0.75);
 
   border: 1px solid rgba(193, 51, 131, 0.2);
-
   border-radius: 16px;
 
-  padding: 1.5rem;
-
   backdrop-filter: blur(12px);
-
-  transition: all 0.25s ease;
 
   box-shadow:
     0 0 15px rgba(121, 44, 162, 0.08),
     0 0 30px rgba(193, 51, 131, 0.05);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .stat-card:hover {
@@ -79,9 +82,9 @@
   margin: 0;
 
   font-size: 0.85rem;
+  font-weight: 600;
 
   text-transform: uppercase;
-
   letter-spacing: 2px;
 
   color: rgba(187, 225, 250, 0.65);
@@ -103,33 +106,32 @@
 /* SECTIONS */
 
 .stats-section {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+
   background: rgba(27, 18, 48, 0.65);
 
   border: 1px solid rgba(193, 51, 131, 0.2);
-
   border-radius: 16px;
-
-  padding: 1.5rem;
-
-  margin-bottom: 1.5rem;
 
   backdrop-filter: blur(12px);
 }
 
 .stats-section h2 {
   margin-top: 0;
+  margin-bottom: 1rem;
+
+  padding-bottom: 10px;
 
   color: #ffffff;
 
-  letter-spacing: 2px;
+  font-size: 1rem;
+  font-weight: 700;
 
+  letter-spacing: 2px;
   text-transform: uppercase;
 
-  font-size: 1rem;
-
   border-bottom: 1px solid rgba(193, 51, 131, 0.15);
-
-  padding-bottom: 10px;
 }
 
 /* SPLIT GRID */
@@ -145,13 +147,12 @@
 }
 
 .stats-panel {
+  padding: 1.5rem;
+
   background: rgba(27, 18, 48, 0.65);
 
   border: 1px solid rgba(193, 51, 131, 0.2);
-
   border-radius: 16px;
-
-  padding: 1.5rem;
 
   backdrop-filter: blur(12px);
 }
@@ -161,11 +162,10 @@
 
   color: #ffffff;
 
-  letter-spacing: 2px;
-
-  text-transform: uppercase;
-
   font-size: 1rem;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 /* LISTS */
@@ -173,6 +173,7 @@
 .stats-section ul,
 .stats-panel ul {
   list-style: none;
+
   padding: 0;
   margin: 0;
 }
@@ -188,10 +189,18 @@
   border-bottom: 1px solid rgba(193, 51, 131, 0.15);
 }
 
+.stats-section li:last-child,
+.stats-panel li:last-child {
+  border-bottom: none;
+}
+
+/* CHARTS */
+
 .chart-card {
   height: 350px;
 
   padding: 1rem;
+  margin-top: 1rem;
 
   border-radius: 16px;
 
@@ -202,45 +211,36 @@
   box-shadow:
     0 0 20px rgba(193, 51, 131, 0.15),
     0 0 40px rgba(121, 44, 162, 0.08);
+}
+
+/* MAP */
+
+.concert-map {
+  width: 100%;
+  height: 420px;
 
   margin-top: 1rem;
+
+  overflow: hidden;
+
+  border-radius: 16px;
+
+  border: 1px solid rgba(193, 51, 131, 0.25);
+
+  box-shadow:
+    0 0 20px rgba(193, 51, 131, 0.15),
+    0 0 40px rgba(121, 44, 162, 0.08);
 }
 
-.stats-section li:last-child,
-.stats-panel li:last-child {
-  border-bottom: none;
-}
-
-/* TIMELINE PLACEHOLDER */
-
-.timeline-placeholder {
-  height: 220px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px dashed rgba(193, 51, 131, 0.3);
-
-  border-radius: 12px;
-
-  color: rgba(187, 225, 250, 0.5);
-
-  letter-spacing: 2px;
-
-  text-transform: uppercase;
-}
-
-/* ACTIVITY */
+/* FIRST / LATEST CONCERT */
 
 .stats-panel p {
   margin: 0;
 
   font-size: 1.3rem;
+  font-weight: 700;
 
   color: #ffffff;
-
-  font-weight: 700;
 }
 
 .stats-panel small {
@@ -251,10 +251,93 @@
   color: rgba(187, 225, 250, 0.55);
 }
 
-/* INSIGHTS */
+/* HIGHLIGHTS */
 
-.stats-section li::before {
-  margin-right: 8px;
+.highlights-section {
+  overflow: hidden;
+}
+
+.highlights-section h2 {
+  margin-bottom: 0;
+}
+
+.highlights-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.highlight-card {
+  position: relative;
+
+  min-width: 0;
+  min-height: 140px;
+
+  padding: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+
+  border-right: 1px solid rgba(193, 51, 131, 0.15);
+
+  background: linear-gradient(180deg, rgba(121, 44, 162, 0.07), rgba(121, 44, 162, 0.01));
+}
+
+.highlight-card:last-child {
+  border-right: none;
+}
+
+.highlight-label {
+  margin-bottom: 0.7rem;
+
+  color: rgba(187, 225, 250, 0.55);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+}
+
+.highlight-value {
+  color: #bbe1fa;
+
+  font-size: 1.3rem;
+  font-weight: 700;
+
+  line-height: 1.3;
+}
+
+.highlight-meta {
+  margin-top: auto;
+  padding-top: 0.8rem;
+
+  color: #c13383;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  letter-spacing: 0.03rem;
+}
+
+/* Small neon line */
+
+.highlight-card::after {
+  content: '';
+
+  position: absolute;
+
+  bottom: 0;
+  left: 1.5rem;
+
+  width: 34px;
+  height: 2px;
+
+  border-radius: 2px;
+
+  background: linear-gradient(90deg, #792ca2, #c13383);
+
+  box-shadow: 0 0 8px rgba(193, 51, 131, 0.5);
 }
 
 /* SCANLINE EFFECT */
@@ -263,7 +346,6 @@
   content: '';
 
   position: fixed;
-
   inset: 0;
 
   pointer-events: none;
@@ -278,89 +360,128 @@
   opacity: 0.3;
 }
 
-.concert-map {
-  height: 420px;
-  width: 100%;
+/* TABLET */
 
-  border-radius: 16px;
-  overflow: hidden;
+@media (max-width: 900px) {
+  .stats-page {
+    padding: 1.5rem;
+  }
 
-  border: 1px solid rgba(193, 51, 131, 0.25);
+  .stats-header h1 {
+    font-size: 2rem;
+  }
 
-  box-shadow:
-    0 0 20px rgba(193, 51, 131, 0.15),
-    0 0 40px rgba(121, 44, 162, 0.08);
+  .highlights-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
-  margin-top: 1rem;
+  .highlight-card {
+    border-bottom: 1px solid rgba(193, 51, 131, 0.15);
+  }
+
+  .highlight-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .highlight-card:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
 }
 
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-}
+/* MOBILE */
 
-.metric-widget {
-  position: relative;
-  overflow: hidden;
+@media (max-width: 600px) {
+  .stats-page {
+    padding: 1rem 0.75rem 2rem;
+  }
 
-  padding: 1.5rem;
+  .stats-header {
+    margin-bottom: 1.5rem;
+  }
 
-  border-radius: 20px;
+  .stats-header h1 {
+    font-size: 1.55rem;
 
-  background: linear-gradient(145deg, rgba(27, 18, 48, 0.95), rgba(36, 24, 67, 0.95));
+    letter-spacing: 2px;
+  }
 
-  border: 1px solid rgba(193, 51, 131, 0.18);
+  .stats-header p {
+    font-size: 0.85rem;
+  }
 
-  min-height: 160px;
-}
+  .overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-.metric-info {
-  position: relative;
-  z-index: 2;
-}
+    gap: 0.75rem;
+  }
 
-.metric-info span {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
+  .stat-card {
+    padding: 1rem;
+  }
 
-.metric-info strong {
-  display: block;
-  margin-top: 0.5rem;
-  font-size: 1.4rem;
-}
+  .stat-card h3 {
+    font-size: 0.65rem;
 
-/* visual effects */
-.metric-ring,
-.metric-bar,
-.metric-wave,
-.metric-pulse {
-  position: absolute;
-  inset: 0;
-  opacity: 0.25;
-}
+    letter-spacing: 1px;
+  }
 
-.metric-ring {
-  background: radial-gradient(circle at center, transparent 45%, #792ca2 47%, transparent 50%);
-}
+  .stat-card span {
+    font-size: 1.7rem;
+  }
 
-.metric-bar {
-  background: repeating-linear-gradient(
-    90deg,
-    #792ca2 0px,
-    #792ca2 6px,
-    transparent 6px,
-    transparent 16px
-  );
-}
+  .stats-section,
+  .stats-panel {
+    padding: 1rem;
+  }
 
-.metric-wave {
-  background:
-    radial-gradient(circle at 20% 70%, #c13383 0 8%, transparent 10%),
-    radial-gradient(circle at 60% 40%, #792ca2 0 8%, transparent 10%);
-}
+  .split-grid {
+    grid-template-columns: 1fr;
 
-.metric-pulse {
-  background: radial-gradient(circle at center, rgba(193, 51, 131, 0.35), transparent 55%);
+    gap: 0.75rem;
+  }
+
+  .chart-card {
+    height: 280px;
+
+    padding: 0.5rem;
+  }
+
+  .concert-map {
+    height: 320px;
+  }
+
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-card {
+    min-height: 110px;
+
+    padding: 1.2rem;
+
+    border-right: none;
+
+    border-bottom: 1px solid rgba(193, 51, 131, 0.15);
+  }
+
+  .highlight-card:nth-last-child(-n + 2) {
+    border-bottom: 1px solid rgba(193, 51, 131, 0.15);
+  }
+
+  .highlight-card:last-child {
+    border-bottom: none;
+  }
+
+  .highlight-card::after {
+    left: 1.2rem;
+  }
+
+  .highlight-value {
+    font-size: 1.15rem;
+  }
+
+  .highlight-meta {
+    margin-top: 0.6rem;
+    padding-top: 0;
+  }
 }

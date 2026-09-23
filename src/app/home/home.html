@@ -1,8 +1,10 @@
 <div class="page-header">
-  <h1>Setory</h1>
+  <span class="hero-label">LIVE MUSIC ARCHIVE</span>
+
+  <h1>Your Concert Archive</h1>
+
   <p>
-    Build your personal live music archive — track concerts, upload memories, explore analytics, map
-    your journey, and plan upcoming shows.
+    <strong>{{ totalConcerts() }}</strong> shows. Countless memories.
   </p>
 </div>
 
@@ -21,12 +23,6 @@
   <button mat-icon-button (click)="setListView()">
     <mat-icon>list</mat-icon>
   </button>
-</div>
-
-<div class="concertSum">
-  <p class="stat">
-    <span>{{ totalConcerts() }}</span> concerts recorded
-  </p>
 </div>
 
 <div class="grid" [class.grid-view]="viewMode() === 'grid'">
